@@ -14,7 +14,15 @@ const FONT_FAMILY = {
 };
 
 export const Theme = {
-  colors: {},
+  colors: {
+    primary: "#FFC634",
+    background: "#FFFFFF",
+    title: "#333333",
+    text: "#4F4F4F",
+    description: "#BDBDBD",
+    white: "#FFFFFF",
+    black: "#000000",
+  },
   typography: {
     fontSize: {
       xxl: RFValue(PixelRatio.getFontScale() * 36),
