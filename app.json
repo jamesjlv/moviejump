@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "moviejump",
+    "slug": "moviejump",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "moviejump"
+}
