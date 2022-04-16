@@ -2,18 +2,23 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Welcome } from "../../presentation/jsx/screens/welcome";
-import { Home } from "../../presentation/jsx/screens/home";
+import { ManufactureHomeScreen } from "../screens/Home";
+import { Movie } from "../../presentation/jsx/screens/movie";
+import { ManufactureMovieScreen } from "../screens/Movie";
 
-const Stack = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
-export const Routes: React.FC = () => (
-  <NavigationContainer>
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName="Welcome"
-    >
-      <Stack.Screen name="Welcome" component={Welcome} />
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
-  </NavigationContainer>
-);
+export function Routes() {
+  return (
+    <NavigationContainer>
+      <Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="Welcome"
+      >
+        <Screen name="Welcome" component={Welcome} />
+        <Screen name="Home" component={ManufactureHomeScreen} />
+        <Screen name="Movie" component={ManufactureMovieScreen} />
+      </Navigator>
+    </NavigationContainer>
+  );
+}
