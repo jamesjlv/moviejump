@@ -11,11 +11,6 @@ export const Container = styled.ScrollView`
   padding: ${getStatusBarHeight() + 40}px 16px 16px 16px;
 `;
 
-export const SearchButton = styled(Feather).attrs({
-  name: "search",
-  size: 24,
-})``;
-
 export const Title = styled.Text`
   font-size: 36px;
   font-weight: 700;
@@ -41,4 +36,12 @@ export const Content = styled.View`
   /* flex: 1; */
   margin-top: 32px;
   padding-bottom: ${getBottomSpace() + 48}px;
+`;
+
+export const LoadingContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 `;

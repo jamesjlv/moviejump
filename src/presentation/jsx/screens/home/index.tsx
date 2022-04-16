@@ -12,11 +12,11 @@ import { HomeProps, PopularProps, TrendingProps } from "./props";
 import {
   Container,
   OptionsWrapper,
-  SearchButton,
   Title,
   Content,
   CardsWrapper,
   SubTitle,
+  LoadingContainer,
 } from "./styles";
 
 export function Home({
@@ -30,13 +30,15 @@ export function Home({
   const [genres, setGenres] = useState<IMovieGenrer[]>();
   const [popularMovies, setPopularMovies] = useState<PopularProps[]>();
   const [trendingMovies, setTrandingMovies] = useState<TrendingProps[]>();
+  const [selectedGenres, setSelectedGenres] = useState<string>();
 
   async function handleGetMovies() {
+    setIsLoading(true);
     let popular;
     let trending;
 
     try {
-      popular = await getAllPopularMovies.exec();
+      popular = await getAllPopularMovies.exec(selectedGenres);
       popular = await Promise.all(
         popular.map(async (movie) => {
           const imagePath = await handleSearchPosterOfMovies(movie.ids.tmdb);
@@ -47,7 +49,7 @@ export function Home({
         })
       );
 
-      trending = await getAllTrendingMovies.exec();
+      trending = await getAllTrendingMovies.exec(selectedGenres);
       trending = await Promise.all(
         trending.map(async (movie) => {
           let imagePath = await handleSearchPosterOfMovies(
@@ -85,7 +87,7 @@ export function Home({
 
   useEffect(() => {
     handleGetMovies();
-  }, []);
+  }, [selectedGenres]);
 
   return (
     <Container>
@@ -94,50 +96,64 @@ export function Home({
         backgroundColor="transparent"
         translucent
       />
-      <SearchButton />
       <Title>Movies</Title>
-      {isLoading && <ActivityIndicator size={24} color="black" />}
-
-      <OptionsWrapper>
-        {genres &&
-          genres?.map((genre) => (
-            <Option key={genre.slug} label={genre.name} />
-          ))}
-      </OptionsWrapper>
-      <Content>
-        <CardsWrapper>
-          {popularMovies &&
-            popularMovies?.map((movie) => (
-              <Card
-                key={"popularMovieCard" + movie.ids.slug}
-                title={movie.title}
-                year={movie.year}
-                imageUrl={movie?.imagePath}
-                onPress={() =>
-                  handleGoToMovieDescription(movie.ids.slug, movie.ids.tmdb)
-                }
-              />
-            ))}
-        </CardsWrapper>
-        <SubTitle>Trending</SubTitle>
-        <CardsWrapper>
-          {trendingMovies &&
-            trendingMovies?.map((movie) => (
-              <Card
-                key={"popularMovieCard" + movie.movie.ids.slug}
-                title={movie.movie.title}
-                year={movie.movie.year}
-                imageUrl={movie?.imagePath}
-                onPress={() =>
-                  handleGoToMovieDescription(
-                    movie.movie.ids.slug,
-                    movie.movie.ids.tmdb
-                  )
-                }
-              />
-            ))}
-        </CardsWrapper>
-      </Content>
+      {isLoading ? (
+        <LoadingContainer>
+          <ActivityIndicator size={24} color="black" />
+          <SubTitle style={{ fontSize: 12, fontWeight: "400" }}>
+            Carregando...
+          </SubTitle>
+        </LoadingContainer>
+      ) : (
+        <>
+          <OptionsWrapper>
+            {genres &&
+              genres?.map((genre) => (
+                <Option
+                  key={genre.slug}
+                  slug={genre.slug}
+                  label={genre.name}
+                  executeWithOnPress={setSelectedGenres}
+                  gendersSelecteds={selectedGenres}
+                />
+              ))}
+          </OptionsWrapper>
+          <Content>
+            <CardsWrapper>
+              {popularMovies &&
+                popularMovies?.map((movie) => (
+                  <Card
+                    key={"popularMovieCard" + movie.ids.slug}
+                    title={movie.title}
+                    year={movie.year}
+                    imageUrl={movie?.imagePath}
+                    onPress={() =>
+                      handleGoToMovieDescription(movie.ids.slug, movie.ids.tmdb)
+                    }
+                  />
+                ))}
+            </CardsWrapper>
+            <SubTitle>Trending</SubTitle>
+            <CardsWrapper>
+              {trendingMovies &&
+                trendingMovies?.map((movie) => (
+                  <Card
+                    key={"popularMovieCard" + movie.movie.ids.slug}
+                    title={movie.movie.title}
+                    year={movie.movie.year}
+                    imageUrl={movie?.imagePath}
+                    onPress={() =>
+                      handleGoToMovieDescription(
+                        movie.movie.ids.slug,
+                        movie.movie.ids.tmdb
+                      )
+                    }
+                  />
+                ))}
+            </CardsWrapper>
+          </Content>
+        </>
+      )}
     </Container>
   );
 }
