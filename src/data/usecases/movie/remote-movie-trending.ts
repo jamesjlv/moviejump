@@ -10,7 +10,7 @@ export class RemoteMovieTrending implements IGetMovieTrending {
 
   async exec(param?: string): Promise<IMovieTrending[]> {
     const httpResponse = await this.httpGetClient.request({
-      url: this.url,
+      url: `${this.url}${!!param ? `?genres=${param}` : ""}`,
       method: HttpMethod.Get,
     });
 

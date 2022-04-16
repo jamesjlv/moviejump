@@ -10,7 +10,7 @@ export class RemoteMoviePopular implements IGetMoviePopular {
 
   async exec(param?: string): Promise<IMoviePopular[]> {
     const httpResponse = await this.httpGetClient.request({
-      url: this.url,
+      url: `${this.url}${!!param ? `?genres=${param}` : ""}`,
       method: HttpMethod.Get,
     });
 
