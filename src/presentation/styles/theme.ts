@@ -2,15 +2,15 @@ import { PixelRatio } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 const FONT_FAMILY = {
-  black: "Roboto-Black",
-  bold: "Roboto-Bold",
-  extraBold: "Roboto-ExtraBold",
-  light: "Roboto-Light",
-  extraLight: "Roboto-ExtraLight",
-  medium: "Roboto-Medium",
-  regular: "Roboto-Regular",
-  semiBold: "Roboto-SemiBold",
-  thin: "Roboto-Thin",
+  black: 900,
+  bold: 700,
+  extraBold: 600,
+  light: 300,
+  extraLight: 100,
+  medium: 500,
+  regular: 400,
+  semiBold: 600,
+  thin: 100,
 };
 
 export const Theme = {

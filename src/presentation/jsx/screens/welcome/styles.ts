@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 
 import { ButtonComponent } from "../../components/actions/touchables/button";
@@ -23,17 +23,23 @@ export const Button = styled(ButtonComponent)`
 `;
 
 export const Title = styled.Text`
-  font-size: 32px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.xxl}px;
+    font-weight: ${theme.typography.fontFamily.bold};
+    line-height: ${theme.typography.lineHeight.xxl}px;
+    color: ${theme.colors.white};
+  `}
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.typography.spacing.xm}px;
 `;
 
 export const Description = styled.Text`
-  font-size: 16px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.xm}px;
+    font-weight: ${theme.typography.fontFamily.medium};
+    line-height: ${theme.typography.lineHeight.xxs}px;
+    color: ${theme.colors.white};
+  `}
   text-align: center;
   margin-bottom: 36px;
 `;
