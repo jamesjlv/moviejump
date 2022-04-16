@@ -23,7 +23,11 @@ export const Welcome: React.FC = () => {
 
   return (
     <Container>
-      <StatusBar barStyle="light-content" />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <FullImage source={WelcomeImage} resizeMode="cover" />
       <Content />
       <Title>Let's {"\n"}Watch?</Title>
