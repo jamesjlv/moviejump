@@ -1,0 +1,5 @@
+import { IMoviePopular } from "@/domain/models/movies";
+
+export interface IGetMoviePopular {
+  exec: (param?: string) => Promise<IMoviePopular[]>;
+}
