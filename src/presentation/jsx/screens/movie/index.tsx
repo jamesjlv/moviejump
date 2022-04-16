@@ -7,8 +7,6 @@ import { ModalMovieProps, ParamsData } from "./props";
 
 import {
   Container,
-  Content,
-  Text,
   Header,
   Image,
   MovieDetails,
@@ -27,7 +25,7 @@ import {
   DescriptonWrapper,
   DescriptonText,
   DescriptonTitle,
-  WhoComment,
+  LabelDescription,
 } from "./styles";
 
 export function Movie({
@@ -107,9 +105,9 @@ export function Movie({
           <DescriptonText>
             {movieDescription?.genres.map((genre) => genre + " ")}
           </DescriptonText>
-          <WhoComment>Genres</WhoComment>
+          <LabelDescription>Genres</LabelDescription>
           <DescriptonText>{movieDescription?.released}</DescriptonText>
-          <WhoComment>Release date</WhoComment>
+          <LabelDescription>Release date</LabelDescription>
           <ButtonComponent
             description="Watch the trailer"
             onPress={() => Linking.openURL(movieDescription?.trailer!)}

@@ -1,5 +1,5 @@
 import { RFValue } from "react-native-responsive-fontsize";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { Header as HeaderComponent } from "../../components/header";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { ScrollView } from "react-native-gesture-handler";
@@ -14,10 +14,6 @@ export const Content = styled.View`
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.8);
-`;
-
-export const Text = styled.Text`
-  font-size: 200px;
 `;
 
 export const Image = styled.Image`
@@ -54,7 +50,12 @@ export const IconTime = styled(IconComponent).attrs({
   margin-right: 4px;
 `;
 export const TimeText = styled.Text`
-  color: ${({ theme }) => theme.colors.description};
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.sm}px;
+    font-weight: ${theme.typography.fontFamily.regular};
+    line-height: ${theme.typography.lineHeight.sm}px;
+    color: ${theme.colors.description};
+  `}
 `;
 // @ts-ignore
 export const IconLike = styled(IconComponent).attrs({
@@ -70,7 +71,12 @@ export const Likes = styled.View`
   margin-right: 8px;
 `;
 export const LikeText = styled.Text`
-  color: ${({ theme }) => theme.colors.description};
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.sm}px;
+    font-weight: ${theme.typography.fontFamily.regular};
+    line-height: ${theme.typography.lineHeight.sm}px;
+    color: ${theme.colors.description};
+  `}
 `;
 export const Stars = styled.View`
   flex-direction: row;
@@ -82,44 +88,65 @@ export const IconStar = styled(IconComponent).attrs({ name: "star", size: 16 })`
   color: ${({ theme }) => theme.colors.description};
 `;
 export const IconText = styled.Text`
-  color: ${({ theme }) => theme.colors.description};
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.sm}px;
+    font-weight: ${theme.typography.fontFamily.regular};
+    line-height: ${theme.typography.lineHeight.sm}px;
+    color: ${theme.colors.description};
+  `}
 `;
 
 export const MovieName = styled.Text`
-  color: ${({ theme }) => theme.colors.title};
-  font-size: 18px;
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.xxm}px;
+    font-weight: ${theme.typography.fontFamily.semiBold};
+    line-height: ${theme.typography.lineHeight.xxm}px;
+    color: ${theme.colors.title};
+  `}
+
   text-align: center;
-  font-weight: 600;
 `;
 
 export const MovieYear = styled.Text`
-  color: ${({ theme }) => theme.colors.description};
-  font-size: 12px;
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.sm}px;
+    font-weight: ${theme.typography.fontFamily.bold};
+    line-height: ${theme.typography.lineHeight.sm}px;
+    color: ${theme.colors.description};
+  `}
   text-align: center;
-  font-weight: 600;
-  margin-top: 8px;
 `;
 export const DescriptonWrapper = styled.View``;
 
 export const DescriptonTitle = styled.Text`
-  color: ${({ theme }) => theme.colors.title};
-  font-size: 16px;
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.xm}px;
+    font-weight: ${theme.typography.fontFamily.bold};
+    line-height: ${theme.typography.lineHeight.xm}px;
+    color: ${theme.colors.title};
+  `}
   text-align: left;
-  font-weight: 600;
   margin: 16px 0;
 `;
 
 export const DescriptonText = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 16px;
-  line-height: 24px;
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.xm}px;
+    font-weight: ${theme.typography.fontFamily.regular};
+    line-height: ${theme.typography.lineHeight.xm}px;
+    color: ${theme.colors.text};
+  `}
 `;
 
-export const WhoComment = styled.Text`
-  color: ${({ theme }) => theme.colors.description};
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 16px;
+export const LabelDescription = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.sm}px;
+    font-weight: ${theme.typography.fontFamily.semiBold};
+    line-height: ${theme.typography.lineHeight.sm}px;
+    color: ${theme.colors.description};
+  `}
+
+  margin-bottom: ${RFValue(16)}px;
 `;
 
 export const Header = styled(HeaderComponent)`
