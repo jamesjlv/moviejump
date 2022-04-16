@@ -1,7 +1,8 @@
 import { IMovieDescription } from "@/domain/models/movies";
-import { useNavigation, useRoute } from "@react-navigation/core";
+import { useRoute } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
-import { StatusBar } from "react-native";
+import { Linking, StatusBar } from "react-native";
+import { ButtonComponent } from "../../components/actions/touchables/button";
 import { ModalMovieProps, ParamsData } from "./props";
 
 import {
@@ -102,11 +103,18 @@ export function Movie({
           <DescriptonText>{movieDescription?.overview}</DescriptonText>
         </DescriptonWrapper>
         <DescriptonWrapper>
-          <DescriptonTitle>Comments</DescriptonTitle>
-          <DescriptonText>Great Movie!</DescriptonText>
-          <WhoComment>Sean Rudford - 05/2000</WhoComment>
-          <DescriptonText>I'm excited to see this movie!</DescriptonText>
-          <WhoComment>James Leal - 05/2000</WhoComment>
+          <DescriptonTitle>Info +</DescriptonTitle>
+          <DescriptonText>
+            {movieDescription?.genres.map((genre) => genre + " ")}
+          </DescriptonText>
+          <WhoComment>Genres</WhoComment>
+          <DescriptonText>{movieDescription?.released}</DescriptonText>
+          <WhoComment>Release date</WhoComment>
+          <ButtonComponent
+            description="Watch the trailer"
+            onPress={() => Linking.openURL(movieDescription?.trailer!)}
+            style={{ borderRadius: 10, marginBottom: 42 }}
+          />
         </DescriptonWrapper>
       </MovieDetails>
     </Container>

@@ -1,10 +1,9 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
 import { Header as HeaderComponent } from "../../components/header";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { ScrollView } from "react-native-gesture-handler";
-
+import { IconComponent } from "../../components/actions/touchables/icon";
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
@@ -44,23 +43,31 @@ export const ShortInfoWrapper = styled.View`
 export const Time = styled.View`
   flex-direction: row;
   align-items: center;
+  margin-right: 8px;
 `;
 // @ts-ignore
-export const IconTime = styled(Feather).attrs({ name: "clock", size: 16 })`
+export const IconTime = styled(IconComponent).attrs({
+  name: "clock",
+  size: 16,
+})`
   color: ${({ theme }) => theme.colors.description};
-  margin-right: 8px;
+  margin-right: 4px;
 `;
 export const TimeText = styled.Text`
   color: ${({ theme }) => theme.colors.description};
 `;
 // @ts-ignore
-export const IconLike = styled(Feather).attrs({ name: "thumbs-up", size: 16 })`
+export const IconLike = styled(IconComponent).attrs({
+  name: "thumbs-up",
+  size: 16,
+})`
   color: ${({ theme }) => theme.colors.description};
-  margin-right: 8px;
+  margin-right: 4px;
 `;
 export const Likes = styled.View`
   flex-direction: row;
   align-items: center;
+  margin-right: 8px;
 `;
 export const LikeText = styled.Text`
   color: ${({ theme }) => theme.colors.description};
@@ -70,8 +77,8 @@ export const Stars = styled.View`
   align-items: center;
 `;
 // @ts-ignore
-export const IconStar = styled(Feather).attrs({ name: "star", size: 16 })`
-  margin-right: 8px;
+export const IconStar = styled(IconComponent).attrs({ name: "star", size: 16 })`
+  margin-right: 4px;
   color: ${({ theme }) => theme.colors.description};
 `;
 export const IconText = styled.Text`
