@@ -1,3 +1,4 @@
+import { IMovieDescription } from "@/domain/models/movies";
 import { useNavigation, useRoute } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
@@ -28,10 +29,15 @@ import {
   WhoComment,
 } from "./styles";
 
-export function Movie({ getMovieImage, ...rest }: ModalMovieProps) {
+export function Movie({
+  getMovieImage,
+  getMovieInfo,
+  ...rest
+}: ModalMovieProps) {
   const { params: ParamsRoute } = useRoute();
   const { params } = ParamsRoute as unknown as ParamsData;
   const [movieImage, setMovieImage] = useState<string>();
+  const [movieDescription, setMovieDescription] = useState<IMovieDescription>();
 
   async function handleSearchImage() {
     if (params?.tmdb) {
@@ -45,8 +51,17 @@ export function Movie({ getMovieImage, ...rest }: ModalMovieProps) {
       );
     }
   }
+  async function handleMovieDescription() {
+    let movieDesc: IMovieDescription;
+    try {
+      movieDesc = await getMovieInfo.exec(params.slug);
+      setMovieDescription(movieDesc);
+    } catch (error) {}
+  }
+
   useEffect(() => {
     handleSearchImage();
+    handleMovieDescription();
   }, [params]);
 
   return (
@@ -66,28 +81,25 @@ export function Movie({ getMovieImage, ...rest }: ModalMovieProps) {
         <ShortInfoWrapper>
           <Time>
             <IconTime />
-            <TimeText>135 min</TimeText>
+            <TimeText>{movieDescription?.runtime} min</TimeText>
           </Time>
           <Likes>
             <IconLike />
-            <LikeText>958</LikeText>
+            <LikeText>{movieDescription?.votes}</LikeText>
           </Likes>
           <Stars>
             <IconStar />
-            <IconText>10k</IconText>
+            <IconText>
+              {movieDescription?.rating.toString().slice(0, 3)}
+            </IconText>
           </Stars>
         </ShortInfoWrapper>
 
-        <MovieName>Doctor Strange - Multiverse of Madness</MovieName>
-        <MovieYear>2022</MovieYear>
+        <MovieName>{movieDescription?.title}</MovieName>
+        <MovieYear>{movieDescription?.year}</MovieYear>
         <DescriptonWrapper>
           <DescriptonTitle>Description</DescriptonTitle>
-          <DescriptonText>
-            Dr. Stephen Strange casts a forbidden spell that opens the doorway
-            to the multiverse, including alternate versions of himself, whose
-            threat to humanity is too great for the combined forces of Strange,
-            Wong, and Wanda Maximoff.
-          </DescriptonText>
+          <DescriptonText>{movieDescription?.overview}</DescriptonText>
         </DescriptonWrapper>
         <DescriptonWrapper>
           <DescriptonTitle>Comments</DescriptonTitle>

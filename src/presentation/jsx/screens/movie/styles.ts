@@ -1,8 +1,9 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
-import Feather from "react-native-vector-icons/Feather";
+import { Feather } from "@expo/vector-icons";
 import { Header as HeaderComponent } from "../../components/header";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { ScrollView } from "react-native-gesture-handler";
 
 export const Container = styled.View`
   flex: 1;
@@ -23,11 +24,12 @@ export const Text = styled.Text`
 export const Image = styled.Image`
   width: 100%;
   height: ${RFValue(350)}px;
+  position: absolute;
 `;
 
-export const MovieDetails = styled.View`
-  top: -15%;
-  height: 115%;
+export const MovieDetails = styled(ScrollView)`
+  flex: 1;
+  margin-top: ${RFValue(300)}px;
   border-radius: ${RFValue(24)}px;
   background-color: ${({ theme }) => theme.colors.background};
   padding: 0 ${RFValue(16)}px;
@@ -43,6 +45,7 @@ export const Time = styled.View`
   flex-direction: row;
   align-items: center;
 `;
+// @ts-ignore
 export const IconTime = styled(Feather).attrs({ name: "clock", size: 16 })`
   color: ${({ theme }) => theme.colors.description};
   margin-right: 8px;
@@ -50,6 +53,7 @@ export const IconTime = styled(Feather).attrs({ name: "clock", size: 16 })`
 export const TimeText = styled.Text`
   color: ${({ theme }) => theme.colors.description};
 `;
+// @ts-ignore
 export const IconLike = styled(Feather).attrs({ name: "thumbs-up", size: 16 })`
   color: ${({ theme }) => theme.colors.description};
   margin-right: 8px;
@@ -65,6 +69,7 @@ export const Stars = styled.View`
   flex-direction: row;
   align-items: center;
 `;
+// @ts-ignore
 export const IconStar = styled(Feather).attrs({ name: "star", size: 16 })`
   margin-right: 8px;
   color: ${({ theme }) => theme.colors.description};
