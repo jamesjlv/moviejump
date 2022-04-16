@@ -1,9 +1,8 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import {
   getBottomSpace,
   getStatusBarHeight,
 } from "react-native-iphone-x-helper";
-import Feather from "react-native-vector-icons/Feather";
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -12,14 +11,22 @@ export const Container = styled.ScrollView`
 `;
 
 export const Title = styled.Text`
-  font-size: 36px;
-  font-weight: 700;
-  margin: 16px 0px;
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.xxl}px;
+    font-weight: ${theme.typography.fontFamily.bold};
+    line-height: ${theme.typography.lineHeight.xxl}px;
+    color: ${theme.colors.title};
+    margin: ${theme.typography.spacing.xm}px 0px;
+  `}
 `;
 export const SubTitle = styled.Text`
-  font-size: 24px;
-  font-weight: 700;
-  margin: 16px 0px;
+  ${({ theme }) => css`
+    font-size: ${theme.typography.fontSize.lg}px;
+    font-weight: ${theme.typography.fontFamily.bold};
+    line-height: ${theme.typography.lineHeight.lg}px;
+    color: ${theme.colors.title};
+    margin: ${theme.typography.spacing.xm}px 0px;
+  `}
 `;
 
 export const OptionsWrapper = styled.ScrollView.attrs({
