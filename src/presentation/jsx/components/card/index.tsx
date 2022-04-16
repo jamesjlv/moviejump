@@ -1,16 +1,26 @@
-import React from "react";
-import { Container, Image, Title, Year } from "./styles";
+import React, { useState } from "react";
+import { ActivityIndicator } from "react-native";
+import { CardProps } from "./props";
+import { Container, ContainerLoading, Image, Title, Year } from "./styles";
 
-export function Card() {
+export function Card({ title, imageUrl, year, ...rest }: CardProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <Container>
+    <Container {...rest}>
       <Image
         source={{
-          uri: "https://pbs.twimg.com/media/FLmnQNdVkAAFvPt?format=jpg&name=medium",
+          uri: imageUrl,
         }}
+        onLoad={() => setIsLoading(false)}
       />
-      <Title>Doctor Strange - Multiverse of Madness</Title>
-      <Year>2022</Year>
+      {isLoading && (
+        <ContainerLoading>
+          <ActivityIndicator size={24} color="black" />
+        </ContainerLoading>
+      )}
+      <Title>{title}</Title>
+      <Year>{year}</Year>
     </Container>
   );
 }
