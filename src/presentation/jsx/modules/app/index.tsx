@@ -1,12 +1,11 @@
 import React from "react";
+import { Routes } from "../../../../main/routes/index.stack.routes";
 import { AppTheme } from "../theme";
 
-import { Container } from "./styles";
-
-export const App: React.FC = () => {
+export function App() {
   return (
     <AppTheme>
-      <Container></Container>
+      <Routes />
     </AppTheme>
   );
-};
+}
