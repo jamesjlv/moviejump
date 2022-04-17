@@ -1,6 +1,6 @@
 # MovieJump 🎬
 
-O seu aplicativo para ver os filmes do momento 🍿
+O seu aplicativo para achar os filmes do momento 🍿
 
 #
 
