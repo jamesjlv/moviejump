@@ -85,7 +85,7 @@ Nesse projeto, todas as dependências estão fixas para garantir que o mesmo ser
 
 ## Veja funcionando
 
-https://user-images.githubusercontent.com/63821594/163736083-fae4cdc2-7c6f-4971-9699-c8b0f0b9f0fe.mov
+https://user-images.githubusercontent.com/63821594/163736309-157704ea-8908-4d69-a98b-dcdda4fe6bf5.mov
 
 #
 
