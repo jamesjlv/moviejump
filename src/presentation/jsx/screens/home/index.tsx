@@ -38,38 +38,38 @@ export function Home({
 
   async function handleGetMovies() {
     setIsLoading(true);
-    let popular;
-    let trending;
-
     try {
-      popular = await getAllPopularMovies.exec(selectedGenres);
-      popular = await Promise.all(
-        popular.map(async (movie) => {
-          const imagePath = await handleSearchPosterOfMovies(movie.ids.tmdb);
-          return {
-            ...movie,
-            imagePath,
-          };
-        })
+      setPopularMovies(
+        await Promise.all(
+          (
+            await getAllPopularMovies.exec(selectedGenres)
+          ).map(async (movie) => {
+            const imagePath = await handleSearchPosterOfMovies(movie.ids.tmdb);
+            return {
+              ...movie,
+              imagePath,
+            };
+          })
+        )
       );
-
-      trending = await getAllTrendingMovies.exec(selectedGenres);
-      trending = await Promise.all(
-        trending.map(async (movie) => {
-          let imagePath = await handleSearchPosterOfMovies(
-            movie.movie.ids.tmdb
-          );
-          return {
-            ...movie,
-            imagePath,
-          };
-        })
+      setTrandingMovies(
+        await Promise.all(
+          (
+            await getAllTrendingMovies.exec(selectedGenres)
+          ).map(async (movie) => {
+            let imagePath = await handleSearchPosterOfMovies(
+              movie.movie.ids.tmdb
+            );
+            return {
+              ...movie,
+              imagePath,
+            };
+          })
+        )
       );
     } catch (error) {
       setIsLoading(false);
     }
-    setPopularMovies(popular as unknown as PopularProps[]);
-    setTrandingMovies(trending as unknown as TrendingProps[]);
 
     setIsLoading(false);
   }
@@ -109,7 +109,7 @@ export function Home({
   useEffect(() => {
     let filtersGenrer: GenresRedux[] = [];
     //@ts-ignore
-    genres?.map((genre) => genre.selected && filtersGenrer.push(genre?.slug));
+    genres?.map((genre) => genre?.selected && filtersGenrer.push(genre?.slug));
     setSelectedGenres(filtersGenrer?.join(","));
   }, [genres, dispatch]);
 

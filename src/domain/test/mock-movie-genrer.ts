@@ -11,4 +11,8 @@ export const mockMovieGenrer = (): IMovieGenrer[] => [
     name: faker.random.words(),
     slug: faker.random.words(),
   },
+  {
+    name: faker.random.words(),
+    slug: faker.random.words(),
+  },
 ];

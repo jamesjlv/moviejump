@@ -9,9 +9,15 @@ module.exports = {
     "!<rootDir>/src/main/**/*",
     "!<rootDir>/src/**/index.ts",
     "!**/*.d.ts",
+    "!<rootDir>/src/presentation/modules/app/**/*",
   ],
   preset: "jest-expo",
-  testPathIgnorePatterns: ["/node_modules", "/ios", "android"],
+  testPathIgnorePatterns: [
+    "/node_modules",
+    "/ios",
+    "android",
+    "/src/presentation/modules/app/",
+  ],
   coverageDirectory: "coverage",
   transform: {
     ".+\\.(ts|tsx)$": "ts-jest",
