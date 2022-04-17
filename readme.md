@@ -55,6 +55,7 @@ e depois rodar o comando desejado dos builds.
 </br>
 O Aplicativo utiliza de conexão com duas apis, uma para pegar informações dos filmes e outra para pegar as imagens do filme.
 </br></br>
+
 <b>Para os filmes:</b> [Trakt](https://trakt.docs.apiary.io)
 </br>
 <b>Para imagens: </b>[The Movie Database](https://developers.themoviedb.org/3)
