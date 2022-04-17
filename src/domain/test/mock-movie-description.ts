@@ -24,6 +24,6 @@ export const mockMovieDescription = (): IMovieDescription => ({
   updated_at: faker.random.words(),
   language: faker.random.words(),
   available_translations: [faker.random.words()],
-  genres: [faker.random.words()],
+  genres: [faker.random.words(), faker.random.words(), faker.random.words()],
   certification: faker.random.words(),
 });

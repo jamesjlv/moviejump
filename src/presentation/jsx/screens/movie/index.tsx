@@ -1,5 +1,5 @@
 import { IMovieDescription } from "@/domain/models/movies";
-import { useRoute } from "@react-navigation/core";
+import { useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Linking, StatusBar } from "react-native";
 import { ButtonComponent } from "../../components/actions/touchables/button";
@@ -36,32 +36,34 @@ export function Movie({
   const { params: ParamsRoute } = useRoute();
   const { params } = ParamsRoute as unknown as ParamsData;
   const [movieImage, setMovieImage] = useState<string>();
-  const [movieDescription, setMovieDescription] = useState<IMovieDescription>();
+  const [movieDescription, setMovieDescription] = useState<IMovieDescription>(
+    {} as IMovieDescription
+  );
 
   async function handleSearchImage() {
-    if (params?.tmdb) {
-      const imageData = await getMovieImage.exec(String(params?.tmdb));
-      const randomImage =
-        imageData.backdrops[
-          Math.floor(Math.random() * imageData.backdrops.length)
-        ];
-      setMovieImage(
-        "https://image.tmdb.org/t/p/original" + randomImage.file_path
-      );
-    }
+    try {
+      if (params?.tmdb) {
+        const imageData = await getMovieImage.exec(String(params?.tmdb));
+        const randomImage =
+          imageData.backdrops[
+            Math.floor(Math.random() * imageData.backdrops.length)
+          ];
+        setMovieImage(
+          "https://image.tmdb.org/t/p/original" + randomImage.file_path
+        );
+      }
+    } catch (error) {}
   }
   async function handleMovieDescription() {
-    let movieDesc: IMovieDescription;
     try {
-      movieDesc = await getMovieInfo.exec(params.slug);
-      setMovieDescription(movieDesc);
+      setMovieDescription(await getMovieInfo.exec(params?.slug));
     } catch (error) {}
   }
 
   useEffect(() => {
     handleSearchImage();
     handleMovieDescription();
-  }, [params]);
+  }, []);
 
   return (
     <Container>
@@ -89,7 +91,7 @@ export function Movie({
           <Stars>
             <IconStar />
             <IconText>
-              {movieDescription?.rating.toString().slice(0, 3)}
+              {movieDescription?.rating?.toString().slice(0, 3)}
             </IconText>
           </Stars>
         </ShortInfoWrapper>
@@ -103,7 +105,7 @@ export function Movie({
         <DescriptonWrapper>
           <DescriptonTitle>Info +</DescriptonTitle>
           <DescriptonText>
-            {movieDescription?.genres.map((genre) => genre + " ")}
+            {movieDescription?.genres?.map((genre) => genre + " ")}
           </DescriptonText>
           <LabelDescription>Genres</LabelDescription>
           <DescriptonText>{movieDescription?.released}</DescriptonText>

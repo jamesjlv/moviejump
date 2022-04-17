@@ -3,7 +3,6 @@ module.exports = {
   setupFilesAfterEnv: [
     "@testing-library/jest-native/extend-expect",
     "jest-styled-components",
-    "./node_modules/react-native-gesture-handler/jestSetup.js",
   ],
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{ts,tsx}",
@@ -12,12 +11,7 @@ module.exports = {
     "!**/*.d.ts",
   ],
   preset: "jest-expo",
-  testPathIgnorePatterns: [
-    "/node_modules",
-    "/ios",
-    "android",
-    "./node_modules/react-native-gesture-handler/jestSetup.js",
-  ],
+  testPathIgnorePatterns: ["/node_modules", "/ios", "android"],
   coverageDirectory: "coverage",
   transform: {
     ".+\\.(ts|tsx)$": "ts-jest",
