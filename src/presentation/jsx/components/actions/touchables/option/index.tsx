@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { OptionPropsComponent } from "./props";
 
 import { Option as OptionContainer, OptionLabel } from "./styles";
@@ -11,6 +12,8 @@ export function Option({
   executeWithOnPress,
   ...rest
 }: OptionPropsComponent) {
+  const store = useSelector((state) => state);
+  console.log(store);
   const [isSelected, setIsSelected] = useState<boolean>(
     gendersSelecteds.includes(slug)
   );

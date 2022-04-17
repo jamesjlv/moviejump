@@ -1,4 +1,5 @@
 import React from "react";
+import { Provider } from "react-redux";
 import { Routes } from "../../../../main/routes/index.stack.routes";
 import { AppTheme } from "../theme";
 import {
@@ -10,6 +11,7 @@ import {
   Roboto_700Bold,
   Roboto_900Black,
 } from "@expo-google-fonts/roboto";
+import store from "@/presentation/contexts/store";
 
 export function App() {
   const [fontsLoaded] = useFonts({
@@ -20,9 +22,12 @@ export function App() {
     Roboto_700Bold,
     Roboto_900Black,
   });
+
   return (
-    <AppTheme>
-      <Routes />
-    </AppTheme>
+    <Provider store={store}>
+      <AppTheme>
+        <Routes />
+      </AppTheme>
+    </Provider>
   );
 }

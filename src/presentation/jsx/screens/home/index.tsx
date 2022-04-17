@@ -4,6 +4,7 @@ import {
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, StatusBar } from "react-native";
 import { Option } from "../../components/actions/touchables/option";
@@ -18,6 +19,7 @@ import {
   SubTitle,
   LoadingContainer,
 } from "./styles";
+import { handleAddGenrer } from "@/presentation/contexts/store/modules/genres/actions";
 
 export function Home({
   getAllPopularMovies,
@@ -25,6 +27,7 @@ export function Home({
   getAllGenres,
   getMovieImage,
 }: HomeProps) {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const [genres, setGenres] = useState<IMovieGenrer[]>();
@@ -36,6 +39,7 @@ export function Home({
     setIsLoading(true);
     let popular;
     let trending;
+    let genres;
 
     try {
       popular = await getAllPopularMovies.exec(selectedGenres);
@@ -61,12 +65,15 @@ export function Home({
           };
         })
       );
-      setGenres(await getAllGenres.exec());
+
+      genres = await getAllGenres.exec();
     } catch (error) {
       setIsLoading(false);
     }
+    setGenres(genres as unknown as IMovieGenrer[]);
     setPopularMovies(popular as unknown as PopularProps[]);
     setTrandingMovies(trending as unknown as TrendingProps[]);
+    dispatch(handleAddGenrer(genres as unknown as IMovieGenrer[]));
     setIsLoading(false);
   }
 
