@@ -7,8 +7,9 @@ export function Card({ title, imageUrl, year, ...rest }: CardProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Container {...rest}>
+    <Container testID="CardComponentContainer" {...rest}>
       <Image
+        testID="CardComponentImage"
         source={{
           uri: imageUrl,
         }}
@@ -19,8 +20,8 @@ export function Card({ title, imageUrl, year, ...rest }: CardProps) {
           <ActivityIndicator size={24} color="black" />
         </ContainerLoading>
       )}
-      <Title>{title}</Title>
-      <Year>{year}</Year>
+      <Title testID="CardComponentTitle">{title}</Title>
+      <Year testID="CardComponentYear">{year}</Year>
     </Container>
   );
 }
