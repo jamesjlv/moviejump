@@ -1,10 +1,9 @@
-import { IMovieGenrer } from "@/domain/models/movies";
 import {
   NavigationProp,
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, StatusBar } from "react-native";
 import { Option } from "../../components/actions/touchables/option";
@@ -20,6 +19,7 @@ import {
   LoadingContainer,
 } from "./styles";
 import { handleAddGenrer } from "@/presentation/contexts/store/modules/genres/actions";
+import { GenresRedux } from "@/presentation/contexts/store/modules/genres/props";
 
 export function Home({
   getAllPopularMovies,
@@ -28,9 +28,10 @@ export function Home({
   getMovieImage,
 }: HomeProps) {
   const dispatch = useDispatch();
+  //@ts-ignore
+  const genres = useSelector((state) => state?.genres?.genrer) as GenresRedux[];
   const [isLoading, setIsLoading] = useState(true);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
-  const [genres, setGenres] = useState<IMovieGenrer[]>();
   const [popularMovies, setPopularMovies] = useState<PopularProps[]>();
   const [trendingMovies, setTrandingMovies] = useState<TrendingProps[]>();
   const [selectedGenres, setSelectedGenres] = useState<string>();
@@ -39,7 +40,6 @@ export function Home({
     setIsLoading(true);
     let popular;
     let trending;
-    let genres;
 
     try {
       popular = await getAllPopularMovies.exec(selectedGenres);
@@ -65,16 +65,30 @@ export function Home({
           };
         })
       );
-
-      genres = await getAllGenres.exec();
     } catch (error) {
       setIsLoading(false);
     }
-    setGenres(genres as unknown as IMovieGenrer[]);
     setPopularMovies(popular as unknown as PopularProps[]);
     setTrandingMovies(trending as unknown as TrendingProps[]);
-    dispatch(handleAddGenrer(genres as unknown as IMovieGenrer[]));
+
     setIsLoading(false);
+  }
+
+  async function handleGetGenres() {
+    let genres;
+
+    try {
+      genres = await getAllGenres.exec();
+    } catch (error) {}
+
+    dispatch(
+      handleAddGenrer(
+        genres?.map((genre) => ({
+          ...genre,
+          selected: false,
+        })) as unknown as GenresRedux[]
+      )
+    );
   }
 
   async function handleSearchPosterOfMovies(tmdb: number) {
@@ -93,8 +107,21 @@ export function Home({
   }
 
   useEffect(() => {
+    let filtersGenrer: GenresRedux[] = [];
+    //@ts-ignore
+    genres?.map((genre) => genre.selected && filtersGenrer.push(genre?.slug));
+    setSelectedGenres(filtersGenrer?.join(","));
+  }, [genres, dispatch]);
+
+  useEffect(() => {
     handleGetMovies();
   }, [selectedGenres]);
+
+  useEffect(() => {
+    if (!genres) {
+      handleGetGenres();
+    }
+  }, []);
 
   return (
     <Container>
@@ -104,6 +131,17 @@ export function Home({
         translucent
       />
       <Title>Movies</Title>
+      <OptionsWrapper>
+        {genres &&
+          genres.map((genre: GenresRedux) => (
+            <Option
+              key={genre.slug}
+              slug={genre.slug}
+              label={genre.name}
+              selected={genre.selected}
+            />
+          ))}
+      </OptionsWrapper>
       {isLoading ? (
         <LoadingContainer>
           <ActivityIndicator size={24} color="black" />
@@ -113,18 +151,6 @@ export function Home({
         </LoadingContainer>
       ) : (
         <>
-          <OptionsWrapper>
-            {genres &&
-              genres?.map((genre) => (
-                <Option
-                  key={genre.slug}
-                  slug={genre.slug}
-                  label={genre.name}
-                  executeWithOnPress={setSelectedGenres}
-                  gendersSelecteds={selectedGenres}
-                />
-              ))}
-          </OptionsWrapper>
           <Content>
             <CardsWrapper>
               {popularMovies &&

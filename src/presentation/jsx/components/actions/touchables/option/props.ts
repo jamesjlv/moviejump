@@ -5,7 +5,7 @@ export type OptionPropsComponent = TouchableOpacityProps & {
   label: string;
   slug: string;
   gendersSelecteds?: string;
-  executeWithOnPress: React.Dispatch<React.SetStateAction<string | undefined>>;
+  executeWithOnPress?: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export type OptionProps = {

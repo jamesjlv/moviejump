@@ -3,6 +3,7 @@ import {
   getBottomSpace,
   getStatusBarHeight,
 } from "react-native-iphone-x-helper";
+import { Dimensions } from "react-native";
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -40,15 +41,14 @@ export const CardsWrapper = styled.ScrollView.attrs({
 })``;
 
 export const Content = styled.View`
-  /* flex: 1; */
   margin-top: 32px;
   padding-bottom: ${getBottomSpace() + 48}px;
 `;
 
 export const LoadingContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  align-self: center;
   height: 100%;
+  top: ${Dimensions.get("screen").height / 2}px;
+  flex: 1;
+  position: absolute;
 `;
