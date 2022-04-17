@@ -19,7 +19,6 @@ module.exports = {
     "./node_modules/react-native-gesture-handler/jestSetup.js",
   ],
   coverageDirectory: "coverage",
-  testEnvironment: "jsdom",
   transform: {
     ".+\\.(ts|tsx)$": "ts-jest",
     ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)(\\?inline)?$":

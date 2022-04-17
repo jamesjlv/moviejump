@@ -28,7 +28,7 @@ export const Welcome: React.FC = () => {
         backgroundColor="transparent"
         translucent
       />
-      <FullImage source={WelcomeImage} resizeMode="cover" />
+      <FullImage source={WelcomeImage || { uri: "" }} resizeMode="cover" />
       <Content />
       <Title>Let's {"\n"}Watch?</Title>
       <Description>Find the best movie to watch!</Description>
