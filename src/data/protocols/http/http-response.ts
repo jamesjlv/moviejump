@@ -1,10 +1,14 @@
 export enum HttpStatusCode {
-  unauthorized = 401,
+  ok = 200,
   noContent = 204,
   badRequest = 400,
-  ok = 200,
+  unauthorized = 401,
+  forbidden = 403,
   notFound = 404,
+  rateLimitExceeded = 429,
   serverError = 500,
+  serverOverload = 503,
+  serverOverloaded = 504,
 }
 
 export type HttpResponse<T> = {
