@@ -4,11 +4,12 @@ import {
   getStatusBarHeight,
 } from "react-native-iphone-x-helper";
 import { Dimensions } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.ScrollView`
   flex: 1;
   flex-direction: column;
-  padding: ${getStatusBarHeight() + 40}px 16px 16px 16px;
+  padding: ${getStatusBarHeight() + 40}px 0px 16px 16px;
 `;
 
 export const Title = styled.Text`
@@ -46,9 +47,6 @@ export const Content = styled.View`
 `;
 
 export const LoadingContainer = styled.View`
-  align-self: center;
-  height: 100%;
-  top: ${Dimensions.get("screen").height / 2}px;
-  flex: 1;
-  position: absolute;
+  align-items: center;
+  margin-top: ${RFValue(200)}px;
 `;

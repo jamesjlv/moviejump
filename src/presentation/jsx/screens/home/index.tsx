@@ -144,7 +144,7 @@ export function Home({
       </OptionsWrapper>
       {isLoading ? (
         <LoadingContainer>
-          <ActivityIndicator size={24} color="black" />
+          <ActivityIndicator size="small" color="gray" />
           <SubTitle style={{ fontSize: 12, fontWeight: "400" }}>
             Carregando...
           </SubTitle>
