@@ -6,7 +6,9 @@ O seu aplicativo para ver os filmes do momento 🍿
 
 ### <b>UI</b>
 
+<center>
 <img src="https://raw.githubusercontent.com/jamesjlv/moviejump/master/src/assets/MovieJump.png" alt="UI" width="700"/>
+</center>
 
 #
 
