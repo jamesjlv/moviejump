@@ -6,6 +6,7 @@ import { Provider, useDispatch } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "@/presentation/contexts/store/modules/rootReducer";
 import { ButtonComponent } from "@/presentation/jsx/components/actions/touchables/button";
+import storeProduction from "../../index";
 import {
   handleAddGenrer,
   handleRemoveSelectedGenrer,
@@ -46,9 +47,20 @@ describe("Store Actions", () => {
     cleanup();
   });
 
-  test("Should be able to press", () => {
+  test("With initials and fakes values", () => {
     const sut = render(
       <Provider store={store}>
+        <TestComponent />
+      </Provider>,
+      {
+        wrapper: AppTheme,
+      }
+    );
+    fireEvent.press(sut.getByTestId("ButtonComponentContainer"));
+  });
+  test("Should be able to render with production store", () => {
+    const sut = render(
+      <Provider store={storeProduction}>
         <TestComponent />
       </Provider>,
       {

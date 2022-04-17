@@ -11,6 +11,7 @@ const { Navigator, Screen } = createStackNavigator();
 export function Routes() {
   return (
     <NavigationContainer>
+      {/* @ts-ignore */}
       <Navigator
         screenOptions={{ headerShown: false }}
         initialRouteName="Welcome"
