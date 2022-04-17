@@ -1,4 +1,6 @@
 import { HttpStatusCode, HttpMethod, HttpClient } from "@/data/protocols/http";
+import { UnexpectedError } from "@/domain/errors/enexpected-error";
+import { OverloadedError } from "@/domain/errors/server-overloaded";
 import { IMovieDescription } from "@/domain/models/movies";
 import { IGetMovieDescription } from "@/domain/usecases/movies/get";
 
@@ -17,8 +19,10 @@ export class RemoteMovieDescription implements IGetMovieDescription {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body as IMovieDescription;
+      case HttpStatusCode.serverOverload:
+        throw new OverloadedError();
       default:
-        throw new Error("Não conectou na API");
+        throw new UnexpectedError();
     }
   }
 }

@@ -1,4 +1,6 @@
 import { HttpStatusCode, HttpMethod, HttpClient } from "@/data/protocols/http";
+import { UnexpectedError } from "@/domain/errors/enexpected-error";
+import { OverloadedError } from "@/domain/errors/server-overloaded";
 import { IMovieImages } from "@/domain/models/movies";
 import { IGetMovieImages } from "@/domain/usecases/movies/get/remote-get-images-movie";
 
@@ -13,15 +15,17 @@ export class RemoteMovieImages implements IGetMovieImages {
       url:
         this.url +
         param +
-        "/images?api_key=2a4e0da945fc9c81654c76fe878e78d6&language=en",
+        `/images?api_key=2a4e0da945fc9c81654c76fe878e78d6&language=en`,
       method: HttpMethod.Get,
     });
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body as IMovieImages;
+      case HttpStatusCode.serverOverload:
+        throw new OverloadedError();
       default:
-        throw new Error("Não conectou na API");
+        throw new UnexpectedError();
     }
   }
 }

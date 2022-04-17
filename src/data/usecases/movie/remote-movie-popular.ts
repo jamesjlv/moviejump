@@ -1,6 +1,8 @@
 import { IGetMoviePopular } from "@/domain/usecases/movies/get";
 import { IMoviePopular } from "@/domain/models/movies";
 import { HttpStatusCode, HttpMethod, HttpClient } from "@/data/protocols/http";
+import { OverloadedError } from "@/domain/errors/server-overloaded";
+import { UnexpectedError } from "@/domain/errors/enexpected-error";
 
 export class RemoteMoviePopular implements IGetMoviePopular {
   constructor(
@@ -17,8 +19,10 @@ export class RemoteMoviePopular implements IGetMoviePopular {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body as IMoviePopular[];
+      case HttpStatusCode.serverOverload:
+        throw new OverloadedError();
       default:
-        throw new Error("Não conectou na API");
+        throw new UnexpectedError();
     }
   }
 }

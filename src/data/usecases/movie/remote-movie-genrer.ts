@@ -1,4 +1,6 @@
 import { HttpStatusCode, HttpMethod, HttpClient } from "@/data/protocols/http";
+import { UnexpectedError } from "@/domain/errors/enexpected-error";
+import { OverloadedError } from "@/domain/errors/server-overloaded";
 import { IMovieGenrer } from "@/domain/models/movies";
 import { IGetMovieGenrer } from "@/domain/usecases/movies/get/remote-get-genres-movie";
 
@@ -17,8 +19,10 @@ export class RemoteMovieGenrer implements IGetMovieGenrer {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body as IMovieGenrer[];
+      case HttpStatusCode.serverOverload:
+        throw new OverloadedError();
       default:
-        throw new Error("Não conectou na API");
+        throw new UnexpectedError();
     }
   }
 }
