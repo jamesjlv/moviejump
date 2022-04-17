@@ -8,8 +8,10 @@ export function ButtonComponent({
   ...rest
 }: TouchableButtonProps) {
   return (
-    <Container {...rest}>
-      <Description>{description}</Description>
+    <Container {...rest} testID="ButtonComponentContainer">
+      <Description testID="ButtonComponentDescription">
+        {description}
+      </Description>
       <Arrow />
     </Container>
   );
