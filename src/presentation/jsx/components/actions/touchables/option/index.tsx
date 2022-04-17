@@ -31,14 +31,8 @@ export function Option({
     }
   }
 
-  function handleSlug(prevState: string, newSlug: string): string {
-    let slugs = [slug] as string[];
-    prevState?.split(",").map((slug) => slug != newSlug && slugs.push(slug));
-    return slugs.join(",");
-  }
-
   useEffect(() => {
-    store.map((option: GenresRedux) => {
+    store?.map((option: GenresRedux) => {
       if (option.slug === slug) {
         if (option.selected) {
           setIsSelected(true);
@@ -51,11 +45,12 @@ export function Option({
 
   return (
     <OptionContainer
+      testID="OptionComponentContainer"
       selected={isSelected}
       onPress={handleOptionSelected}
       {...rest}
     >
-      <OptionLabel>{label}</OptionLabel>
+      <OptionLabel testID="OptionComponentLabel">{label}</OptionLabel>
     </OptionContainer>
   );
 }
