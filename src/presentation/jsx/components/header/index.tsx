@@ -12,7 +12,7 @@ export function Header({ ...rest }: HeaderProps) {
   const { goBack }: NavigationProp<ParamListBase> = useNavigation();
 
   return (
-    <Container onPress={goBack} {...rest}>
+    <Container testID="HeaderComponentContainer" onPress={goBack} {...rest}>
       <BackIcon />
     </Container>
   );
