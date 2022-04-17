@@ -7,6 +7,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 export function IconComponent({ name, size = 24, ...rest }: IconProps) {
   return (
     <Container
+      testID="IconComponentContainer"
       style={{ width: RFValue(size), height: RFValue(size) }}
       {...rest}
     >
