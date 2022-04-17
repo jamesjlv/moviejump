@@ -6,9 +6,9 @@ O seu aplicativo para achar os filmes do momento 🍿
 
 ### <b>UI</b>
 
-<center>
+<p align='center'>
 <img src="https://raw.githubusercontent.com/jamesjlv/moviejump/master/src/assets/MovieJump.png" alt="UI" width="700"/>
-</center>
+</p>
 
 #
 
@@ -84,9 +84,8 @@ Nesse projeto, todas as dependências estão fixas para garantir que o mesmo ser
 
 ## Veja funcionando
 
-https://user-images.githubusercontent.com/63821594/163735964-ec6ca95a-eefb-4c31-a798-186c43e203a6.mov
+https://user-images.githubusercontent.com/63821594/163736083-fae4cdc2-7c6f-4971-9699-c8b0f0b9f0fe.mov
 
 #
 
-<center>Feito com carinho por James Leal</center>
-<center>🚀🚀🚀</center>
+<p align='center'>Feito com carinho por James Leal </br> 🚀🚀🚀</p>
