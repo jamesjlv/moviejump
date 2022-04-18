@@ -1,8 +1,12 @@
-import { IGetMoviePopular } from "@/domain/usecases/movies/get";
-import { IMoviePopular } from "@/domain/models/movies";
-import { HttpStatusCode, HttpMethod, HttpClient } from "@/data/protocols/http";
-import { OverloadedError } from "@/domain/errors/server-overloaded";
-import { UnexpectedError } from "@/domain/errors/enexpected-error";
+import { IGetMoviePopular } from "@/src/domain/usecases/movies/get";
+import { IMoviePopular } from "@/src/domain/models/movies";
+import {
+  HttpStatusCode,
+  HttpMethod,
+  HttpClient,
+} from "@/src/data/protocols/http";
+import { OverloadedError } from "@/src/domain/errors/server-overloaded";
+import { UnexpectedError } from "@/src/domain/errors/enexpected-error";
 
 export class RemoteMoviePopular implements IGetMoviePopular {
   constructor(

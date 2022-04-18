@@ -1,4 +1,4 @@
-import { APIsConfig } from "@/infra/config/api";
+import { APIsConfig } from "@/src/infra/config/api";
 const { trakt, tmdb } = APIsConfig;
 
 export const manufactureApiUrl = (path: string): string =>

@@ -1,8 +1,8 @@
 import {
   handleRemoveSelectedGenrer,
   handleSelectGenrer,
-} from "@/presentation/contexts/store/modules/genres/actions";
-import { GenresRedux } from "@/presentation/contexts/store/modules/genres/props";
+} from "@/src/presentation/contexts/store/modules/genres/actions";
+import { GenresRedux } from "@/src/presentation/contexts/store/modules/genres/props";
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { OptionPropsComponent } from "./props";

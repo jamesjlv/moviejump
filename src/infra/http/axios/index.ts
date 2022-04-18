@@ -1,6 +1,10 @@
 /* eslint-disable class-methods-use-this */
 import axios, { AxiosResponse } from "axios";
-import { HttpRequest, HttpResponse, HttpClient } from "@/data/protocols/http";
+import {
+  HttpRequest,
+  HttpResponse,
+  HttpClient,
+} from "@/src/data/protocols/http";
 
 export class AxiosHttpClient implements HttpClient {
   async request(data: HttpRequest): Promise<HttpResponse<any>> {

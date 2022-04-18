@@ -1,6 +1,6 @@
-import { RemoteMoviePopular } from "@/data/usecases/movie/remote-movie-popular";
-import { manufactureApiUrl } from "@/main/factories/api/api-url-factory";
-import { manufactureHttpClient } from "@/main/factories/http/http-client-factory";
+import { RemoteMoviePopular } from "@/src/data/usecases/movie/remote-movie-popular";
+import { manufactureApiUrl } from "@/src/main/factories/api/api-url-factory";
+import { manufactureHttpClient } from "@/src/main/factories/http/http-client-factory";
 
 export const manufactureGetRemotePopularMovies = (): RemoteMoviePopular =>
   new RemoteMoviePopular(

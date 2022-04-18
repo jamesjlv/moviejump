@@ -1,8 +1,8 @@
-import { IMoviePopular, IMovieTrending } from "@/domain/models/movies";
-import { IGetMoviePopular } from "@/domain/usecases/movies/get";
-import { IGetMovieGenrer } from "@/domain/usecases/movies/get/remote-get-genres-movie";
-import { IGetMovieImages } from "@/domain/usecases/movies/get/remote-get-images-movie";
-import { IGetMovieTrending } from "@/domain/usecases/movies/get/remote-get-trending-movie";
+import { IMoviePopular, IMovieTrending } from "@/src/domain/models/movies";
+import { IGetMoviePopular } from "@/src/domain/usecases/movies/get";
+import { IGetMovieGenrer } from "@/src/domain/usecases/movies/get/remote-get-genres-movie";
+import { IGetMovieImages } from "@/src/domain/usecases/movies/get/remote-get-images-movie";
+import { IGetMovieTrending } from "@/src/domain/usecases/movies/get/remote-get-trending-movie";
 
 export interface HomeProps {
   getAllPopularMovies: IGetMoviePopular;

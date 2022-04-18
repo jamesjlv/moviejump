@@ -1,5 +1,5 @@
 module.exports = {
-  roots: ["<rootDir>/src"],
+  roots: ["<rootDir>/src", "<rootDir>/tests"],
   setupFilesAfterEnv: [
     "@testing-library/jest-native/extend-expect",
     "jest-styled-components",
@@ -25,6 +25,7 @@ module.exports = {
       "jest-transform-stub",
   },
   moduleNameMapper: {
-    "@/(.*)": "<rootDir>/src/$1",
+    "@/(.*)": "<rootDir>/$1",
+    "@/tests/(.*)": "<rootDir>/tests/$1",
   },
 };

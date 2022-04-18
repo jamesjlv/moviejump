@@ -18,8 +18,8 @@ import {
   SubTitle,
   LoadingContainer,
 } from "./styles";
-import { handleAddGenrer } from "@/presentation/contexts/store/modules/genres/actions";
-import { GenresRedux } from "@/presentation/contexts/store/modules/genres/props";
+import { handleAddGenrer } from "@/src/presentation/contexts/store/modules/genres/actions";
+import { GenresRedux } from "@/src/presentation/contexts/store/modules/genres/props";
 
 export function Home({
   getAllPopularMovies,

@@ -1,8 +1,12 @@
-import { HttpStatusCode, HttpMethod, HttpClient } from "@/data/protocols/http";
-import { UnexpectedError } from "@/domain/errors/enexpected-error";
-import { OverloadedError } from "@/domain/errors/server-overloaded";
-import { IMovieImages } from "@/domain/models/movies";
-import { IGetMovieImages } from "@/domain/usecases/movies/get/remote-get-images-movie";
+import {
+  HttpStatusCode,
+  HttpMethod,
+  HttpClient,
+} from "@/src/data/protocols/http";
+import { UnexpectedError } from "@/src/domain/errors/enexpected-error";
+import { OverloadedError } from "@/src/domain/errors/server-overloaded";
+import { IMovieImages } from "@/src/domain/models/movies";
+import { IGetMovieImages } from "@/src/domain/usecases/movies/get/remote-get-images-movie";
 
 export class RemoteMovieImages implements IGetMovieImages {
   constructor(

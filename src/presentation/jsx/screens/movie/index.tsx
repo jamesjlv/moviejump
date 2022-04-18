@@ -1,4 +1,4 @@
-import { IMovieDescription } from "@/domain/models/movies";
+import { IMovieDescription } from "@/src/domain/models/movies";
 import { useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Linking, StatusBar } from "react-native";
