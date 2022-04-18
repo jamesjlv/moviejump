@@ -3,10 +3,9 @@ import {
   handleSelectGenrer,
 } from "@/src/presentation/contexts/store/modules/genres/actions";
 import { GenresRedux } from "@/src/presentation/contexts/store/modules/genres/props";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { OptionPropsComponent } from "./props";
-
 import { Option as OptionContainer, OptionLabel } from "./styles";
 
 export function Option({
