@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { Routes } from "../../../../main/routes/index.stack.routes";
 import { AppTheme } from "../theme";
@@ -12,7 +12,7 @@ import {
   Roboto_900Black,
 } from "@expo-google-fonts/roboto";
 import store from "@/presentation/contexts/store";
-
+import SplashScreen from "react-native-splash-screen";
 export function App() {
   const [fontsLoaded] = useFonts({
     Roboto_100Thin,
@@ -22,6 +22,12 @@ export function App() {
     Roboto_700Bold,
     Roboto_900Black,
   });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hide();
+    }
+  }, [fontsLoaded]);
 
   return (
     <Provider store={store}>
