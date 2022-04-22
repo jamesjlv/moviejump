@@ -5,15 +5,16 @@ import {
   HttpResponse,
   HttpClient,
 } from "@/src/data/protocols/http";
+import Config from "react-native-config";
 
 export class AxiosHttpClient implements HttpClient {
   async request(data: HttpRequest): Promise<HttpResponse<any>> {
     let axiosResponse: AxiosResponse;
 
+    axios.defaults.headers.common["trakt-api-version"] = "2";
+    axios.defaults.headers.common["trakt-api-key"] = Config.CLIENT_ID;
+
     try {
-      axios.defaults.headers.common["trakt-api-version"] = "2";
-      axios.defaults.headers.common["trakt-api-key"] =
-        "3605af69cf6cd0885cda969c37b77db7b0a3227e5f417013026db56a285d0129";
       axiosResponse = await axios.request({
         url: data.url,
         method: data.method,
