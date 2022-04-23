@@ -20,6 +20,7 @@ import {
 } from "./styles";
 import { handleAddGenrer } from "@/src/presentation/contexts/store/modules/genres/actions";
 import { GenresRedux } from "@/src/presentation/contexts/store/modules/genres/props";
+import { Search } from "../../components/search";
 
 export function Home({
   getAllPopularMovies,
@@ -28,8 +29,8 @@ export function Home({
   getMovieImage,
 }: HomeProps) {
   const dispatch = useDispatch();
-  //@ts-ignore
-  const genres = useSelector((state) => state.genres.genrer) as GenresRedux[];
+  // @ts-ignore
+  const genres = useSelector((state) => state?.genres.genrer) as GenresRedux[];
   const [isLoading, setIsLoading] = useState(true);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const [popularMovies, setPopularMovies] = useState<PopularProps[]>();
@@ -140,6 +141,7 @@ export function Home({
         backgroundColor="transparent"
         translucent
       />
+      <Search />
       <Title>Movies</Title>
       <OptionsWrapper>
         {genres &&
