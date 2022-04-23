@@ -17,5 +17,6 @@ export const SearchIcon = styled(Feather).attrs({
 `;
 
 export const Input = styled(TextInput)`
+  flex: 1;
   font-size: ${({ theme }) => theme.typography.spacing.xm}px; ;
 `;
