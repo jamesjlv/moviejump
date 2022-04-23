@@ -27,7 +27,6 @@ export function Home({
   getAllTrendingMovies,
   getAllGenres,
   getMovieImage,
-  getMoviesFiltered,
 }: HomeProps) {
   const dispatch = useDispatch();
   // @ts-ignore
