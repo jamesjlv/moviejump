@@ -119,7 +119,11 @@ export function Home({
   }
 
   async function handleSearchMovies() {
-    console.log(filter);
+    navigate("Search", {
+      params: {
+        filter,
+      },
+    });
   }
 
   useEffect(() => {
@@ -167,7 +171,7 @@ export function Home({
         <LoadingContainer>
           <ActivityIndicator size="small" color="gray" />
           <SubTitle style={{ fontSize: 12, fontWeight: "400" }}>
-            Carregando...
+            Loading...
           </SubTitle>
         </LoadingContainer>
       ) : (
