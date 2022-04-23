@@ -4,6 +4,6 @@ import { manufactureHttpClient } from "../../factories/http/http-client-factory"
 
 export const manufactureGetRemoteSearchMovie = (): RemoteSearchMovie =>
   new RemoteSearchMovie(
-    manufactureApiUrl("search/movies"),
+    manufactureApiUrl("search/movie"),
     manufactureHttpClient()
   );
