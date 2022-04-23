@@ -1,3 +1,5 @@
 import { TouchableOpacityProps } from "react-native";
 
-export type HeaderProps = TouchableOpacityProps & {};
+export type HeaderProps = TouchableOpacityProps & {
+  title?: string;
+};

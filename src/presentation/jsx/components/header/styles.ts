@@ -4,7 +4,10 @@ import { TouchableOpacity } from "react-native";
 
 export const Container = styled(TouchableOpacity).attrs({
   activeOpacity: Number(0.7),
-})``;
+})`
+  flex-direction: row;
+  align-items: center;
+`;
 
 //@ts-ignore
 export const BackIcon = styled(Feather).attrs({
@@ -12,4 +15,10 @@ export const BackIcon = styled(Feather).attrs({
   size: 30,
 })`
   color: ${({ theme }) => theme.colors.black};
+`;
+
+export const Title = styled.Text`
+  font-size: ${({ theme }) => theme.typography.fontSize.xxm}px;
+  margin-left: ${({ theme }) => theme.typography.fontSize.xs}px;
+  font-weight: ${({ theme }) => theme.typography.fontFamily.semiBold};
 `;
