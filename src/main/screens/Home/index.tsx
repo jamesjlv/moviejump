@@ -4,6 +4,7 @@ import { manufactureGetRemotePopularMovies } from "../../services/movie/remote-g
 import { manufactureGetRemoteTrendingMovies } from "@/src/main/services/movie/remote-get-movies-trending";
 import { manufactureGetRemoteGenresMovies } from "@/src/main/services/movie/remote-get-movies-genres";
 import { manufactureGetRemoteImageMovies } from "@/src/main/services/movie/remote-get-movie-image";
+import { manufactureGetRemoteSearchMovie } from "../../services/movie/remote-get-movie-search";
 
 export const ManufactureHomeScreen: React.FC = () => (
   <Home
@@ -11,5 +12,6 @@ export const ManufactureHomeScreen: React.FC = () => (
     getAllTrendingMovies={manufactureGetRemoteTrendingMovies()}
     getAllGenres={manufactureGetRemoteGenresMovies()}
     getMovieImage={manufactureGetRemoteImageMovies()}
+    getMoviesFiltered={manufactureGetRemoteSearchMovie()}
   />
 );

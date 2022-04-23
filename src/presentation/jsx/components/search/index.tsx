@@ -7,7 +7,7 @@ export function Search({ ...rest }: SearchComponentProps) {
   return (
     <Container>
       <SearchIcon />
-      <Input placeholder="Search..." {...rest} />
+      <Input keyboardType="web-search" placeholder="Search..." {...rest} />
     </Container>
   );
 }

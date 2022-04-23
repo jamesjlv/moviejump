@@ -27,6 +27,7 @@ export function Home({
   getAllTrendingMovies,
   getAllGenres,
   getMovieImage,
+  getMoviesFiltered,
 }: HomeProps) {
   const dispatch = useDispatch();
   // @ts-ignore
@@ -36,6 +37,7 @@ export function Home({
   const [popularMovies, setPopularMovies] = useState<PopularProps[]>();
   const [trendingMovies, setTrandingMovies] = useState<TrendingProps[]>();
   const [selectedGenres, setSelectedGenres] = useState<string>();
+  const [filter, setFilter] = useState<string>();
 
   async function handleGetMovies() {
     setIsLoading(true);
@@ -117,6 +119,10 @@ export function Home({
     });
   }
 
+  async function handleSearchMovies() {
+    console.log(filter);
+  }
+
   useEffect(() => {
     let filtersGenrer: GenresRedux[] = [];
     //@ts-ignore
@@ -141,7 +147,11 @@ export function Home({
         backgroundColor="transparent"
         translucent
       />
-      <Search />
+      <Search
+        value={filter}
+        onChangeText={setFilter}
+        onEndEditing={handleSearchMovies}
+      />
       <Title>Movies</Title>
       <OptionsWrapper>
         {genres &&

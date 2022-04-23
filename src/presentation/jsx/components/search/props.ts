@@ -1,3 +1,3 @@
-import { TextInput } from "react-native";
+import { TextInputProps } from "react-native";
 
-export interface SearchComponentProps extends TextInput {}
+export interface SearchComponentProps extends TextInputProps {}
