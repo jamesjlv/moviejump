@@ -20,6 +20,7 @@ import {
 } from "./styles";
 import { handleAddGenrer } from "@/src/presentation/contexts/store/modules/genres/actions";
 import { GenresRedux } from "@/src/presentation/contexts/store/modules/genres/props";
+import { Search } from "../../components/search";
 
 export function Home({
   getAllPopularMovies,
@@ -28,13 +29,14 @@ export function Home({
   getMovieImage,
 }: HomeProps) {
   const dispatch = useDispatch();
-  //@ts-ignore
-  const genres = useSelector((state) => state.genres.genrer) as GenresRedux[];
+  // @ts-ignore
+  const genres = useSelector((state) => state?.genres.genrer) as GenresRedux[];
   const [isLoading, setIsLoading] = useState(true);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const [popularMovies, setPopularMovies] = useState<PopularProps[]>();
   const [trendingMovies, setTrandingMovies] = useState<TrendingProps[]>();
   const [selectedGenres, setSelectedGenres] = useState<string>();
+  const [filter, setFilter] = useState<string>();
 
   async function handleGetMovies() {
     setIsLoading(true);
@@ -116,6 +118,14 @@ export function Home({
     });
   }
 
+  async function handleSearchMovies() {
+    navigate("Search", {
+      params: {
+        filter,
+      },
+    });
+  }
+
   useEffect(() => {
     let filtersGenrer: GenresRedux[] = [];
     //@ts-ignore
@@ -140,6 +150,11 @@ export function Home({
         backgroundColor="transparent"
         translucent
       />
+      <Search
+        value={filter}
+        onChangeText={setFilter}
+        onEndEditing={handleSearchMovies}
+      />
       <Title>Movies</Title>
       <OptionsWrapper>
         {genres &&
@@ -156,7 +171,7 @@ export function Home({
         <LoadingContainer>
           <ActivityIndicator size="small" color="gray" />
           <SubTitle style={{ fontSize: 12, fontWeight: "400" }}>
-            Carregando...
+            Loading...
           </SubTitle>
         </LoadingContainer>
       ) : (
