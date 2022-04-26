@@ -29,7 +29,7 @@ export function Home({
 }: HomeProps) {
   const dispatch = useDispatch();
   //@ts-ignore
-  const genres = useSelector((state) => state?.genres?.genrer) as GenresRedux[];
+  const genres = useSelector((state) => state.genres.genrer) as GenresRedux[];
   const [isLoading, setIsLoading] = useState(true);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const [popularMovies, setPopularMovies] = useState<PopularProps[]>();
@@ -39,21 +39,8 @@ export function Home({
   async function handleGetMovies() {
     setIsLoading(true);
     try {
-      setPopularMovies(
-        await Promise.all(
-          (
-            await getAllPopularMovies.exec(selectedGenres)
-          ).map(async (movie) => {
-            const imagePath = await handleSearchPosterOfMovies(movie.ids.tmdb);
-            return {
-              ...movie,
-              imagePath,
-            };
-          })
-        )
-      );
       setTrandingMovies(
-        await Promise.all(
+        (await Promise.all(
           (
             await getAllTrendingMovies.exec(selectedGenres)
           ).map(async (movie) => {
@@ -65,7 +52,20 @@ export function Home({
               imagePath,
             };
           })
-        )
+        )) as TrendingProps[]
+      );
+      setPopularMovies(
+        (await Promise.all(
+          (
+            await getAllPopularMovies.exec(selectedGenres)
+          ).map(async (movie) => {
+            const imagePath = await handleSearchPosterOfMovies(movie.ids.tmdb);
+            return {
+              ...movie,
+              imagePath,
+            };
+          })
+        )) as PopularProps[]
       );
     } catch (error) {
       setIsLoading(false);
@@ -92,9 +92,19 @@ export function Home({
   }
 
   async function handleSearchPosterOfMovies(tmdb: number) {
-    const path = await getMovieImage.exec(String(tmdb));
-
-    return `https://image.tmdb.org/t/p/original${path.posters[0].file_path}`;
+    const path = await getMovieImage.exec(`${tmdb}`);
+    try {
+      return `https://image.tmdb.org/t/p/original${
+        path?.posters[0]
+          ? path?.posters[0]?.file_path
+          : path?.backdrops[0]
+          ? path?.backdrops[0]?.file_path
+          : path?.logos[0]?.file_path
+      }`;
+    } catch (error) {
+      console.log(error);
+      return;
+    }
   }
 
   async function handleGoToMovieDescription(slug: string, tmdb: number) {

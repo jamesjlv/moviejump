@@ -7,6 +7,7 @@ import { UnexpectedError } from "@/src/domain/errors/enexpected-error";
 import { OverloadedError } from "@/src/domain/errors/server-overloaded";
 import { IMovieImages } from "@/src/domain/models/movies";
 import { IGetMovieImages } from "@/src/domain/usecases/movies/get/remote-get-images-movie";
+import Config from "react-native-config";
 
 export class RemoteMovieImages implements IGetMovieImages {
   constructor(
@@ -19,7 +20,7 @@ export class RemoteMovieImages implements IGetMovieImages {
       url:
         this.url +
         param +
-        `/images?api_key=2a4e0da945fc9c81654c76fe878e78d6&language=en`,
+        `/images?api_key=${Config.IMAGE_KEY}&language=en-US&include_image_language=en,null`,
       method: HttpMethod.Get,
     });
 
